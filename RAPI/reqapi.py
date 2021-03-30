@@ -3,6 +3,8 @@
 
 import requests
 import mysql.connector
+from classe import *
+from math import *
 
 def load_data(category):
 
@@ -18,7 +20,7 @@ def load_data(category):
     products = response.json()
      #How many page in a category.
     count = products["count"]
-    loop = 3           # import only the tree first pages       #ceil(count/20) # 20 = pagination
+    loop = 3# import only the tree first pages#ceil(count/20) # 20 = pagination
     #fill database
     while loop > 0:
         #redefine url
@@ -56,7 +58,9 @@ def fill_database():
 if __name__ == "__main__":
 
     #Define the connexion
-    cnx = mysql.connector.connect(user="purebeure", password= "pure", database="alimentation")
+    cnx = mysql.connector.connect(user="purebeure", password= "pure",
+        database="pure_beure")
+
     cursor = cnx.cursor()
     load_data("fruits-secs")
     load_data("produits-a-tartiner")
