@@ -81,3 +81,31 @@ class DataManager:
                     self.cursor.execute(query_prod)
                 except:# pylint: disable=bare-except
                     continue
+    def get_url_product(self, product_id):
+
+        url = "https://world.openfoodfacts.org/api/v0/product/" + product_id
+        return url
+
+    def create_tables(self):
+
+        try:
+            self.create_table(self.create_categories)
+            self.create_table(self.create_products)
+            self.create_table(self.create_substitutes)
+            self.conn.commit()
+        except Exception as e:
+            print("RollBack : {}".format(e))
+            self.conn.rollback()
+
+    def insert_data(self):
+
+        try:
+            self.insert_categories()
+            self.conn.commit()
+        except Exception as e_cat:
+            print("RollBack : {}".format(e_cat))
+            self.conn.rollback()
+
+    def quit_database(self):
+
+        self.conn.close()
