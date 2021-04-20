@@ -4,6 +4,10 @@
 import mysql.connector
 import openfoodfacts
 
+from SQL.queries_sql import (CREATE_USER, CREATE_DB, CREATE_SUBSTITUTES,
+                             CREATE_PRODUCTS, CREATE_CATEGORIES)
+from SQL.settings import (CONNECTOR_PASSWORD, CONNECTOR_DATABASE,
+                          CONNECTOR_HOST, CONNECTOR_USER, CATEGORY_SIZE)
 
 class DataManager:
 
