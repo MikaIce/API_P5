@@ -14,7 +14,7 @@ class DataManager:
     def __init__(self):
 
         self.conn = mysql.connector.connect(host=CONNECTOR_HOST,
-                                            user=CONNECTOR_USE,
+                                            user=CONNECTOR_USER,
                                             password=CONNECTOR_PASSWORD,
                                             database=CONNECTOR_DATABASE,
                                             auth_plugin='mysql_'
