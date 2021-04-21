@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 # -*-coding:utf-8 -
 
-from settings import (CONNECTOR_USER, CONNECTOR_HOST, CONNECTOR_DATABASE,
+from SQL.settings import (CONNECTOR_USER, CONNECTOR_HOST, CONNECTOR_DATABASE,
                       CONNECTOR_PASSWORD)
 
 CREATE_USER = """

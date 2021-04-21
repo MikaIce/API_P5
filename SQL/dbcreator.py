@@ -1,8 +1,10 @@
 #!/usr/bin/python3.5
 # -*-coding:utf-8 -
 
-from settings import (HOST_ROOT, CONNECTOR_ROOT, PASSWORD_ROOT)
-from queries_sql import (CREATE_USER, GRANT_PRIV, CREATE_DB)
+import mysql.connector
+
+from SQL.settings import (HOST_ROOT, CONNECTOR_ROOT, PASSWORD_ROOT)
+from SQL.queries_sql import (CREATE_USER, GRANT_PRIV, CREATE_DB)
 
 class DBCreator:
 
