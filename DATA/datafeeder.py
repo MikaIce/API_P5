@@ -13,10 +13,10 @@ class DataFeeder:
 
     def get_substitutes_list(self):
 
-        query_sub_list = """SELECT Product.product_name AS nom
-        FROM Substututes
+        query_sub_list = """SELECT Products.product_name AS nom
+        FROM Substitutes
         INNER JOIN Products
-            ON Substitutes.substitute_id = Products_id """
+            ON Substitutes.substitute_id = Products.id """
         self.data_manager.cursor.execute(query_sub_list)
         substitutes = self.data_manager.cursor.fetchall()
         return substitutes

@@ -45,7 +45,7 @@ class DataManager:
     def get_id_categories(self):
 
         self.cursor.execute("""SELECT id FROM Categories""")
-        products = sel.cursor.fetchall()
+        products = self.cursor.fetchall()
         id_categories = list()
         for t in products:
             id_categories.append(str(t[0]))
@@ -74,7 +74,7 @@ class DataManager:
         id_categories = self.get_id_categories()
         for j in id_categories:
             products_list = openfoodfacts.products.get_by_category(j)
-            for i in product_list:
+            for i in products_list:
                 try:
                     query_prod = """INSERT INTO Products (id, category_id,
                     product_name, nutriscore_grade, store, url_product,

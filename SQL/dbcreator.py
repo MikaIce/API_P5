@@ -31,7 +31,7 @@ class DBCreator:
 
     def delete_base(self):
 
-        query_db = "DROP DATABASE OpenFoodFacts"
+        query_db = "DROP DATABASE Openfoodfacts"
         self.conn.execute(query_db)
 
     def quit_database(self):
