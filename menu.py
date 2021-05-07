@@ -24,10 +24,14 @@ class MenuHandler:
         """Starting menu"""
         while self.continue_main_menu:
             print("""
-            1.Quel aliment souhaitez-vous remplacer ?
-            2.Retrouver mes aliments substitués
-
-            3.Exit/Quit
+            ###################################################
+            # Pure Beurre vous propose les options suivantes  #
+            #                                                 #
+            # 1.Quel aliment souhaitez-vous remplacer ?       #
+            # 2.Retrouver mes aliments substitués             #
+            #                                                 #
+            # 3.Exit/Quit                                     #
+            ###################################################
             """)
             try:
                 ans = input("Que voulez-vous faire ? ")
@@ -62,8 +66,13 @@ class MenuHandler:
         """ Menu to manage the categories"""
         while self.continue_cat_menu:
             print("""
-            1.Sélectionner une catégorie
-            2.Retourner au menu principal
+            ###################################################
+            # Pure Beurre vous propose les options suivantes  #
+            #                                                 #
+            # 1.Sélectionner une catégorie                    #
+            # 2.Retourner au menu principal                   #
+            #                                                 #
+            ###################################################
             """)
             try:
                 ans = input("Que voulez-vous faire ? ")
