@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3.7
 # -*-coding:utf-8 -
 
 import random
@@ -102,7 +102,7 @@ class DataFeeder:
         """Get the substitutes recorded"""
         subs = self.get_substitutes_list()
         if subs:
-            print("\n La liste de mes aliments substitués :")
+            print("\n La liste de mes aliments substitués : ")
             subs_list = list()
             for i in subs:
                 subs_list.append(str(i[0]))

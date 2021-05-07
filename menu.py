@@ -1,4 +1,4 @@
-#!/usr/bSSin/python3.5
+#!/usr/bSSin/python3.7
 # -*-coding:utf-8 -
 
 import sys
@@ -26,8 +26,8 @@ class MenuHandler:
             print("""
             1.Quel aliment souhaitez-vous remplacer ?
             2.Retrouver mes aliments substitués
-            3.Réinitialiser la base de données
-            4.Exit/Quit
+
+            3.Exit/Quit
             """)
             try:
                 ans = input("Que voulez-vous faire ? ")
@@ -37,7 +37,7 @@ class MenuHandler:
                     self.show_category_menu()
                 elif ans == "2":
                     self.data_feeder.get_record_substitutes()
-                elif ans == "3":
+                elif ans == "4":
                     self.data_feeder.quit_database()
                     db_creator = DBCreator()
                     db_creator.delete_base()
@@ -49,7 +49,7 @@ class MenuHandler:
                     data_manager.insert_data()
                     data_manager.quit_database()
                     self.data_feeder = DataFeeder()
-                elif ans == "4":
+                elif ans == "3":
                     self.data_feeder.quit_database()
                     print("\n Au revoir")
                     sys.exit()
@@ -89,7 +89,7 @@ class MenuHandler:
                 for count, element in enumerate(cat_list):
                     print("{} - {}".format(count + 1, element))
                 ans = input("Veuillez choisir une catégorie dans "
-                            "la liste ci-dessus")
+                            "la liste ci-dessus ")
                 ans = int(ans)
                 if ans in range(1, len(cat_list) + 1):
                     print("Vous avez choisi la catégorie : "
@@ -133,7 +133,7 @@ class MenuHandler:
                     print("{} - {}".format(count + 1, element))
                 ans = \
                     input("Veuillez choisir un produit dans la "
-                          "liste ci-dessus")
+                          "liste ci-dessus ")
                 try:
                     ans = int(ans)
                     if ans in range(1, len(prod_list) + 1):
@@ -184,14 +184,14 @@ class MenuHandler:
         sub_name = sub_name.replace("""\'""", "")
         while self.continue_record_substitute:
             ans = input("Voulez vous sauvegarder cet aliment dans "
-                        " votre base de données ? (Oui/Non) ")
-            if ans == "Oui":
+                        " votre base de données ? (O/N) ")
+            if ans == "O":
                 self.data_feeder.record_substitutes(sub_name, product_name)
                 print("\nL'aliment a été sauvegardé")
                 self.continue_record_substitute = False
                 self.continue_main_menu = True
                 self.show_main_menu()
-            elif ans == "Non":
+            elif ans == "N":
                 print("\nL'aliment n'a pas été sauvegardé")
                 self.continue_record_substitute = False
                 self.continue_main_menu = True
