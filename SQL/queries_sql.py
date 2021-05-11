@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3.7
 # -*-coding:utf-8 -
 
 from SQL.settings import (CONNECTOR_USER, CONNECTOR_HOST, CONNECTOR_DATABASE,

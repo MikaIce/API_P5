@@ -49,6 +49,7 @@ class DataFeeder:
             return products_list
         except ValueError:
             print("Il n'y a pas de produits dans cette catégorie")
+        return None
 
     def get_product_nutriscore(self, product):
 
@@ -83,6 +84,7 @@ class DataFeeder:
             return substitute
         except ValueError:
             print("Il n'y a pas de substitut pour votre produit")
+        return None
 
     def record_substitutes(self, sub_name, product_name):
         """Record the substitute chosen in the databaseDE"""
