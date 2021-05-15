@@ -23,8 +23,11 @@ The research must be carried out on a MySql database.
 
 Installation :
 
-Change the parameters in the file settings.py
 pip3 install -r requirements.txt
+
+Manage settings :
+
+Change the parameters in the file settings.py
 
 Execute the Main :
 
