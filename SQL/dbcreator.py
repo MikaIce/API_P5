@@ -29,11 +29,6 @@ class DBCreator:
         query_db = CREATE_DB
         self.cursor.execute(query_db)
 
-    def delete_base(self):
-
-        query_db = "DROP DATABASE pure_beure"
-        self.conn.execute(query_db)
-
     def quit_database(self):
 
         self.conn.close()
