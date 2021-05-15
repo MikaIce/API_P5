@@ -28,7 +28,7 @@ class MenuHandler:
             ###################################################
             # Pure Beurre vous propose les options suivantes  #
             #                                                 #
-            # 1.Liste des aliments ?                          #
+            # 1.Quel aliment souhaitez-vous remplacer ?       #
             # 2.Retrouver mes aliments substitués             #
             #                                                 #
             # 3.Exit/Quit                                     #
