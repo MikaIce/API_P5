@@ -4,7 +4,7 @@
 
 import sys
 
-from django.DATA.datafeeder import DataFeeder
+from DATA.datafeeder import DataFeeder
 from DATA.datamanager import DataManager
 from SQL.dbcreator import DBCreator
 
