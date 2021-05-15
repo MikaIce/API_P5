@@ -1,18 +1,19 @@
 #!/usr/bin/python3.7
 # -*-coding:utf-8 -
+"""File Get the data in your DB MySQL"""
 
 import random
 
 from DATA.datamanager import DataManager
 
 class DataFeeder:
-
+    """class datafeeder"""
     def __init__(self):
-
+        """Initializing"""
         self.data_manager = DataManager()
 
     def get_substitutes_list(self):
-
+        """ substitutes mysql"""
         query_sub_list = """SELECT Products.product_name AS nom
         FROM Substitutes
         INNER JOIN Products
@@ -22,7 +23,7 @@ class DataFeeder:
         return substitutes
 
     def get_categories(self):
-
+        """ categories in the database """
         query_cat = """SELECT name FROM Categories"""
         self.data_manager.cursor.execute(query_cat)
         categories = self.data_manager.cursor.fetchall()
@@ -33,7 +34,7 @@ class DataFeeder:
         return categories_list
 
     def get_products(self, category):
-
+        """ products for a category """
         query_prod = """SELECT Products.product_name AS nom
         FROM Products
         INNER JOIN categories
@@ -52,7 +53,7 @@ class DataFeeder:
         return None
 
     def get_product_nutriscore(self, product):
-
+        """ nutriscore of product """
         query_prod = """SELECT Products.nutriscore_grade
                 FROM Products
                 Where Products.product_name = '%s' """ % product
@@ -62,7 +63,7 @@ class DataFeeder:
         return product_nutriscore
 
     def get_substitutes(self, category, nutriscore_product):
-
+        """ nustricore grade """
         query_sub = """SELECT Products.product_name AS nom,
         Products.description AS Description,
         Products.store AS Magasin,
@@ -87,7 +88,7 @@ class DataFeeder:
         return None
 
     def record_substitutes(self, sub_name, product_name):
-        """Record the substitute chosen in the databaseDE"""
+        """databaseDE"""
         query_sub = """INSERT INTO Substitutes (product_id, substitute_id)
          VALUES (
          (SELECT id
@@ -101,7 +102,7 @@ class DataFeeder:
         self.data_manager.conn.commit()
 
     def get_record_substitutes(self):
-        """Get the substitutes recorded"""
+        """substitutes recorded"""
         subs = self.get_substitutes_list()
         if subs:
             print("\n La liste de mes aliments substitués : ")
@@ -114,5 +115,5 @@ class DataFeeder:
             print("Vous n'avez pas encore de substitut")
 
     def quit_database(self):
-        """Close the connector mysql"""
+        """Close mysql"""
         self.data_manager.conn.close()
