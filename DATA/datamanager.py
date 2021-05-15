@@ -1,5 +1,6 @@
 #!/usr/bin/python3.7
 # -*-coding:utf-8 -
+""" Get the data from OpenFoodFacts"""
 
 import mysql.connector
 import openfoodfacts
@@ -10,9 +11,9 @@ from SQL.settings import (CONNECTOR_PASSWORD, CONNECTOR_DATABASE,
                           CONNECTOR_HOST, CONNECTOR_USER, CATEGORY_SIZE)
 
 class DataManager:
-
+    """Connection class datamanager"""
     def __init__(self):
-
+        """Initialization"""
         self.conn = mysql.connector.connect(host=CONNECTOR_HOST,
                                             user=CONNECTOR_USER,
                                             password=CONNECTOR_PASSWORD,
@@ -30,11 +31,11 @@ class DataManager:
         self.cat_name = []
 
     def create_table(self, table):
-
+        """Create table"""
         self.cursor.execute(table)
 
     def get_categories(self):
-
+        """Return all the french categories"""
         categories = openfoodfacts.facets.get_categories()
         category_id = list()
         for i in categories:
@@ -43,7 +44,7 @@ class DataManager:
         return category_id
 
     def get_id_categories(self):
-
+        """Transform a tuple"""
         self.cursor.execute("""SELECT id FROM Categories""")
         products = self.cursor.fetchall()
         id_categories = list()
@@ -52,7 +53,7 @@ class DataManager:
         return id_categories
 
     def insert_categories(self):
-
+        """Insert categories"""
         self.cat_id = self.get_categories()
         if not self.get_id_categories():
             self.cat_name = [s.replace('fr:', '') for s in self.cat_id]
@@ -70,7 +71,7 @@ class DataManager:
             print("Votre base est a jour")
 
     def insert_products(self):
-
+        """Insert all the products associate to the category"""
         id_categories = self.get_id_categories()
         for j in id_categories:
             products_list = openfoodfacts.products.get_by_category(j)
@@ -86,30 +87,30 @@ class DataManager:
                 except:# pylint: disable=bare-except
                     continue
     def get_url_product(self, product_id):
-
+        """Build and Return the url"""
         url = "https://world.openfoodfacts.org/api/v0/product/" + product_id
         return url
 
     def create_tables(self):
-
+        """Call the functions"""
         try:
             self.create_table(self.create_categories)
             self.create_table(self.create_products)
             self.create_table(self.create_substitutes)
             self.conn.commit()
-        except Exception as e:
+        except Exception as e:# pylint: disable=bare-except
             print("RollBack : {}".format(e))
             self.conn.rollback()
 
     def insert_data(self):
-
+        """Insert data in the tables"""
         try:
             self.insert_categories()
             self.conn.commit()
-        except Exception as e_cat:
+        except Exception as e_cat:# pylint: disable=bare-except
             print("RollBack : {}".format(e_cat))
             self.conn.rollback()
 
     def quit_database(self):
-
+        """Close the connector"""
         self.conn.close()
