@@ -1,6 +1,7 @@
 #!/usr/bin/python3.7
 # -*-coding:utf-8 -
 """Querie of create BD for user"""
+
 from SQL.settings import (CONNECTOR_USER, CONNECTOR_HOST, CONNECTOR_DATABASE,
                           CONNECTOR_PASSWORD)
 
