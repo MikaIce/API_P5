@@ -1,9 +1,10 @@
 #!/usr/bSSin/python3.7
 # -*-coding:utf-8 -
+"""File Menu pure beurre for user"""
 
 import sys
 
-from DATA.datafeeder import DataFeeder
+from django.DATA.datafeeder import DataFeeder
 from DATA.datamanager import DataManager
 from SQL.dbcreator import DBCreator
 
@@ -21,13 +22,13 @@ class MenuHandler:
         self.data_feeder = DataFeeder()
 
     def show_main_menu(self):
-        """Starting menu"""
+        """Start"""
         while self.continue_main_menu:
             print("""
             ###################################################
             # Pure Beurre vous propose les options suivantes  #
             #                                                 #
-            # 1.Quel aliment souhaitez-vous remplacer ?       #
+            # 1.Liste des aliments ?                          #
             # 2.Retrouver mes aliments substitués             #
             #                                                 #
             # 3.Exit/Quit                                     #
@@ -41,18 +42,6 @@ class MenuHandler:
                     self.show_category_menu()
                 elif ans == "2":
                     self.data_feeder.get_record_substitutes()
-                elif ans == "4":
-                    self.data_feeder.quit_database()
-                    db_creator = DBCreator()
-                    db_creator.delete_base()
-                    print("La base a été réinitialisée")
-                    db_creator.create_db()
-                    db_creator.quit_database()
-                    data_manager = DataManager()
-                    data_manager.create_tables()
-                    data_manager.insert_data()
-                    data_manager.quit_database()
-                    self.data_feeder = DataFeeder()
                 elif ans == "3":
                     self.data_feeder.quit_database()
                     print("\n Au revoir")
@@ -63,7 +52,7 @@ class MenuHandler:
                 print("Veuillez entrer un nombre valide")
 
     def show_category_menu(self):
-        """ Menu to manage the categories"""
+        """ Menu categories"""
         while self.continue_cat_menu:
             print("""
             ###################################################
@@ -77,7 +66,7 @@ class MenuHandler:
             try:
                 ans = input("Que voulez-vous faire ? ")
                 if ans == "1":
-                    print("\n La liste des catégories:")
+                    print("\n La liste des catégories: \n")
                     self.continue_main_menu = False
                     self.continue_cat_menu = False
                     self.continue_choose_category = True
@@ -91,14 +80,14 @@ class MenuHandler:
                 print("Veuillez entrer un nombre valide")
 
     def choose_category(self):
-        """Menu to select a catagory"""
+        """Catagory"""
         while self.continue_choose_category:
             try:
                 cat_list = self.data_feeder.get_categories()
                 for count, element in enumerate(cat_list):
                     print("{} - {}".format(count + 1, element))
-                ans = input("Veuillez choisir une catégorie dans "
-                            "la liste ci-dessus ")
+                ans = input("\n Veuillez choisir une catégorie dans "
+                            "la liste ci-dessus : ")
                 ans = int(ans)
                 if ans in range(1, len(cat_list) + 1):
                     print("Vous avez choisi la catégorie : "
@@ -113,11 +102,16 @@ class MenuHandler:
                 print("Veuillez entrer un nombre valide")
 
     def show_product_menu(self, category):
-        """Menu to manage the products"""
+        """Menu products"""
         while self.continue_prod_menu:
             print("""\n
-            1.Sélectionner un produit
-            2.Retourner à la liste des catégories
+            ###################################################
+            # Pure Beurre vous propose les options suivantes  #
+            #                                                 #
+            # 1.Sélectionner un produit                       #
+            # 2.Retourner à la liste des catégories           #
+            #                                                 #
+            ###################################################
             """)
             try:
                 ans = input("Que voulez-vous faire ? ")
@@ -134,7 +128,7 @@ class MenuHandler:
                 print("Veuillez entrer un nombre valide")
 
     def choose_product(self, category):
-        """Menu to select a product"""
+        """Product"""
         while self.continue_choose_product:
             prod_list = self.data_feeder.get_products(category)
             if prod_list:
@@ -167,7 +161,7 @@ class MenuHandler:
                 self.choose_category()
 
     def choose_substitute(self, category, nutriscore, product_choose):
-        """Menu to select a substitute"""
+        """Menu substitute"""
         while self.continue_choose_substitute:
             sub = self.data_feeder.get_substitutes(category, nutriscore)
             if sub:
@@ -188,7 +182,7 @@ class MenuHandler:
                 self.continue_main_menu = True
 
     def record_substitute(self, sub_name, product_name):
-        """Menu to record the substitute"""
+        """Menu record"""
         sub_name = sub_name.replace("""(\'""", "")
         sub_name = sub_name.replace("""\'""", "")
         while self.continue_record_substitute:
