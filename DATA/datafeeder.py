@@ -93,10 +93,14 @@ class DataFeeder:
          VALUES (
          (SELECT id
          FROM Products
-         WHERE Products.product_name = '%s'),
+         WHERE Products.product_name = '%s'
+         LIMIT 1
+         ),
          (SELECT id
          FROM Products
-         WHERE Products.product_name = '%s'));""" % (product_name, sub_name)
+         WHERE Products.product_name = '%s'
+         LIMIT 1
+         ));""" % (product_name, sub_name)
         self.data_manager.cursor.execute(query_sub)
         print("Inserted", self.data_manager.cursor.rowcount, "row(s) of data.")
         self.data_manager.conn.commit()

@@ -9,7 +9,7 @@ from DATA.datamanager import DataManager
 from SQL.dbcreator import DBCreator
 
 class MenuHandler:
-
+    """Menu"""
     def __init__(self):
 
         self.continue_main_menu = True
